@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: abdennebi/frontend
+        image: cloudnativestack/frontend
         imagePullPolicy: Always
         ports:
         - containerPort: 80

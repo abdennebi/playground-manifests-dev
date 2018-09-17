@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: product
-        image: abdennebi/product-service
+        image: cloudnativestack/product-service
         imagePullPolicy: Always
         ports:
         - containerPort: 80

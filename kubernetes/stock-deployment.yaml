@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: stock
-        image: abdennebi/stock-service
+        image: cloudnativestack/stock-service
         imagePullPolicy: Always
         ports:
         - containerPort: 80
