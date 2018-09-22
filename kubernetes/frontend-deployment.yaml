@@ -2,35 +2,36 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
+  namespace: default
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: frontend
-  replicas: 1
   template:
     metadata:
       labels:
-         app: frontend
+        app: frontend
     spec:
       containers:
-      - name: frontend
-        image: cloudnativestack/frontend
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 80
-        env:
+      - env:
         - name: PRODUCT_URL
-          value: "http://product"
+          value: http://product
         - name: STOCK_URL
-          value: "http://stock"
+          value: http://stock
         - name: PORT
           value: "80"
+        image: gcr.io/cloudnativestack-playground/frontend:5ca63f0194641097c59e4a41acdfb62c5ba61ff9
+        imagePullPolicy: Always
         livenessProbe:
           httpGet:
             path: /actuator/health
             port: 80
           initialDelaySeconds: 60
-          periodSeconds: 10 # default is 10s
+          periodSeconds: 10
+        name: frontend
+        ports:
+        - containerPort: 80
         readinessProbe:
           httpGet:
             path: /actuator/health

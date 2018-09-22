@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: stock
+  namespace: default
 spec:
   replicas: 1
   selector:
@@ -13,20 +14,20 @@ spec:
         app: stock
     spec:
       containers:
-      - name: stock
-        image: cloudnativestack/stock-service
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 80
-        env:
+      - env:
         - name: PORT
           value: "80"
+        image: gcr.io/cloudnativestack-playground/stock-service:5ca63f0194641097c59e4a41acdfb62c5ba61ff9
+        imagePullPolicy: Always
         livenessProbe:
           httpGet:
             path: /actuator/health
             port: 80
           initialDelaySeconds: 60
-          periodSeconds: 10 # default is 10s
+          periodSeconds: 10
+        name: stock
+        ports:
+        - containerPort: 80
         readinessProbe:
           httpGet:
             path: /actuator/health
