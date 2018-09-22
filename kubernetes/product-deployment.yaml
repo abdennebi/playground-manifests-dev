@@ -15,9 +15,9 @@ spec:
     spec:
       containers:
       - env:
-        - name: PORT
+        - name: SERVER_PORT
           value: "80"
-        image: gcr.io/cloudnativestack-playground/product-service:7488b4988f026c7828c35c21f10a5485dbbea8cd
+        image: gcr.io/cloudnativestack-playground/product-service
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
