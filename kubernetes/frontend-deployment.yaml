@@ -21,7 +21,7 @@ spec:
           value: http://stock
         - name: SERVER_PORT
           value: "80"
-        image: gcr.io/cloudnativestack-playground/frontend
+        image: gcr.io/cloudnativestack-playground/frontend:d7fc6443ef4e14eea7aa34ce84f53e8bab842455
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
